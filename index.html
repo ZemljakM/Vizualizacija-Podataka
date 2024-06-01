@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <title>World Map</title>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+    <div class="container">
+        <div class="row">
+            <div id="map-container">
+                <div id="tooltip" class="tooltip"></div>
+                <div id="overlay" style="display:none;">
+                    <div id="overlay-content"></div>
+                </div>
+                
+            </div>
+            <div class="map-info">
+                <div id="info">
+                    <h2>UNESCO World Heritage Sites</h2>
+                </div>
+                <div class="charts">
+                    <div id="bar-chart"></div>
+                    <div id="pie-chart"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="inputs">
+            <div id="year-slider-container">
+                <input type="range" id="year-slider" min="1978" max="2023" step="1" value="2023" oninput="updateMap(this.value)">
+                <label for="year-slider" id="year-label">Year: 2023</label>
+            </div>
+            <div>
+                <div class="select-wrapper">
+                    <select id="country-select">
+                        <option value="">Select a country</option>
+                    </select>
+                </div>                
+            </div>
+        </div>
+        
+    
+    </div>
+
+    
+    
+    <div class="charts">
+        <div id="bar-chart"></div>
+        <div id="pie-chart"></div>
+    </div>
+    
+
+    <script src="map.js"></script>
+    <script src="bar-chart.js"></script>
+    <script src="pie-chart.js"></script>
+
+    <script>
+        function updateMap(year) {
+            var year = document.getElementById('year-slider').value;
+            var selectedCountry = document.getElementById('country-select').value;
+            document.getElementById('year-label').innerText = 'Year: ' + year;
+            filterDataByYear(year);
+            updatePieChart(year, selectedCountry);
+            updateBarChart(year, selectedCountry);
+        }
+
+        document.getElementById('country-select').addEventListener('change', function() {
+            var year = document.getElementById('year-slider').value;
+            var selectedCountry = document.getElementById('country-select').value;
+            filterDataByCountry(selectedCountry, year);
+            updatePieChart(year, selectedCountry);
+            updateBarChart(year, selectedCountry);
+            setTimeout(function() {
+                d3.select("#country-select").property("selectedIndex", 0);
+                filterDataByYear(year);
+                updateBarChart(year);
+                document.getElementById('info').innerHTML = "<h2>UNESCO Site Information</h2>";
+                updatePieChart(year);
+            }, 15000);
+        });
+    </script>
+    
+</body>
+</html>

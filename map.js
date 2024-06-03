@@ -1,5 +1,5 @@
 var width = document.getElementById('map-container').clientWidth * 0.99;
-var height = width * 0.7;
+var height = width * 0.65;
 
 var projection = d3.geo.mercator()
     .scale(135)
@@ -40,6 +40,7 @@ d3.json("world.json", function(error, world) {
         .style("stroke", "#d6d5d6")
         .style("stroke-width", 0.5)
         .on("mouseover", function(d) {
+            d3.select(this).style("fill", "rgba(192, 108, 132, 1)");
             div.transition()
                 .duration(200)
                 .style("opacity", .9);
@@ -48,9 +49,14 @@ d3.json("world.json", function(error, world) {
                 .style("top", (d3.event.pageY - 28) + "px");
         })
         .on("mouseout", function(d) {
+            d3.select(this).style("fill", "white");
             div.transition()
                 .duration(500)
                 .style("opacity", 0);
+        })
+        .on("click", function(d) {
+            var countryName = d.properties.name;
+            updateCountrySites(countryName, d3.select("#year-slider").node().value);
         });
 
     

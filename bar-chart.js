@@ -67,10 +67,11 @@ function updateBarChart(year, selectedCountry = null) {
 
         var svg = d3.select("#bar-chart")
             .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom + 100)
+            .attr("width", width + margin.left + margin.right - 50)
+            .attr("height", height + margin.top + margin.bottom + 80)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + ((width + margin.left) / 2 - width / 2) + "," + ((height + margin.top) / 2 - height / 2) + ")");
+
 
         svg.selectAll(".bar")
             .data(barChartData)

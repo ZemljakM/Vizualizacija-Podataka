@@ -21,7 +21,9 @@
             </div>
             <div class="map-info">
                 <div id="info">
-                    <h2>UNESCO World Heritage Sites</h2>
+                    <div class="info-title">
+                        <h2>UNESCO World Heritage Sites</h2>
+                    </div>
                 </div>
                 <div class="charts">
                     <div id="bar-chart"></div>
@@ -79,7 +81,6 @@
                 d3.select("#country-select").property("selectedIndex", 0);
                 filterDataByYear(year);
                 updateBarChart(year);
-                document.getElementById('info').innerHTML = "<h2>UNESCO Site Information</h2>";
                 updatePieChart(year);
             }, 15000);
         });

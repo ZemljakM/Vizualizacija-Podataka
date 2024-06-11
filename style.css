@@ -19,6 +19,7 @@ body{
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    margin-bottom: 1em;
 }
 
 .charts{
@@ -54,7 +55,6 @@ body{
     width: 35%;
     height: fit-content;
     margin-top: 1em;
-    justify-content: center;
 }
 
 .tooltip {
@@ -73,14 +73,13 @@ body{
     display: flex;
     width: 100%;
     height: fit-content;
-    max-width: 500px;
     justify-content: center;
 }
 
 .info-title{
     font: 26px sans-serif;
     line-height: 44px;
-    width: 70%;
+    width: 90%;
 }
 
 
@@ -251,12 +250,14 @@ input[type="range"]::-ms-thumb:active {
     border-radius: 60px;
     opacity: 0;
     transition: opacity 1s;
+    overflow-y: auto;
 }
 
 #overlay-content {
     margin: auto;
     width: 80%;
     max-width: 600px;
+    
 }
 
 #overlay-content p{

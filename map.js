@@ -1,8 +1,8 @@
 var width = document.getElementById('map-container').clientWidth * 0.99;
-var height = width * 0.65;
+var height = window.innerHeight * 0.85;
 
 var projection = d3.geo.mercator()
-    .scale(135)
+    .scale(width / 7)
     .translate([width / 2, height / 1.5]);
 
 var path = d3.geo.path()

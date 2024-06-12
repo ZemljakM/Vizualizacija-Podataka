@@ -1,8 +1,4 @@
-d3.json("unesco.json", function(error, data) {
-    if (error) throw error;
-
-    updateBarChart(2023);  
-});
+updateBarChart(2023);  
 
 
 function updateBarChart(year, selectedCountry = null) {
@@ -101,7 +97,5 @@ function updateBarChart(year, selectedCountry = null) {
         svg.selectAll(".bar")
             .append("title")
             .text(function(d) { return d.values; });
-
-    
     });
 }

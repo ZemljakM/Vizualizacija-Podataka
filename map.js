@@ -56,7 +56,17 @@ d3.json("world.json", function(error, world) {
         })
         .on("click", function(d) {
             var countryName = d.properties.name;
+            var year = document.getElementById('year-slider').value;
             updateCountrySites(countryName, d3.select("#year-slider").node().value);
+            filterDataByCountry(countryName, year);
+            updatePieChart(year, countryName);
+            updateBarChart(year, countryName);
+            setTimeout(function() {
+                d3.select("#country-select").property("selectedIndex", 0);
+                filterDataByYear(year);
+                updateBarChart(year);
+                updatePieChart(year);
+            }, 15000);
         });
 
     
@@ -72,12 +82,6 @@ d3.json("world.json", function(error, world) {
                 .attr("value", country)
                 .text(country);
         });
-
-        select.on("change", function() {
-            var selectedCountry = this.value;
-            updateCountrySites(selectedCountry, d3.select("#year-slider").node().value);
-        });
-
 
         filterDataByYear(2023);
     });

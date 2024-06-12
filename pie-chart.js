@@ -22,11 +22,9 @@ var pieSvg = d3.select("#pie-chart")
 var legend = d3.select("#pie-chart").append("ul")
     .attr("class", "legend");
 
-d3.json("unesco.json", function(error, data) {
-    if (error) throw error;
 
-    updatePieChart(2023);  
-});
+updatePieChart(2023);  
+
 
 function updatePieChart(year, selectedCountry = null) {
     d3.json("unesco.json", function(error, data) {
